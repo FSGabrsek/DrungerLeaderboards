@@ -4,7 +4,7 @@
 
 <header>
 	<div class="top">
-		<h1>Header</h1>
+		<h1>Drungers</h1>
 	</div>
 	<div class="bot"/>
 </header>
@@ -13,9 +13,23 @@
 </main>
 
 <style>
-	main {
-		text-align: center;
-		max-width: 240px;
+	:global(body)::before {
+		content: "";
+
+		background-image: url('https://dreadhunger.com/images/update-bg.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: bottom;
+		opacity: .3;
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		z-index: -10;
+		
 	}
 
 	header {
@@ -47,5 +61,15 @@
 		z-index: -1;
 
 		background-repeat: repeat-x;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+
+		margin-inline: clamp(50px, 20vw, 300px);
+		padding: 30px 0;
 	}
 </style>
