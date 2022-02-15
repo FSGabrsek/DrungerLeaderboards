@@ -1,5 +1,9 @@
 <script>
+	import Run from './Run.svelte'
 
+	const runs = [
+		
+	]
 </script>
 
 <header>
@@ -9,7 +13,7 @@
 	<div class="bot"/>
 </header>
 <main>
-	"We are nearly through the passage, the storm bites at our heels, and the crew whispers of blood and dark magic."
+	<Run></Run>
 </main>
 
 <style>
@@ -68,8 +72,19 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
+	}
 
-		margin-inline: clamp(50px, 20vw, 300px);
-		padding: 30px 0;
+	@media only screen and (min-width: 625px) {
+		main {
+			margin-inline: clamp(25px, 20vw, 300px);
+			padding: 30px 0;
+		}
+	}
+
+	@media only screen and (max-width: 625px) {
+		main {
+			margin-inline: clamp(25px, 3vw, 300px);
+			padding: 30px 0;
+		}
 	}
 </style>
