@@ -1,30 +1,51 @@
 <script>
-	export let name;
+
 </script>
 
+<header>
+	<div class="top">
+		<h1>Header</h1>
+	</div>
+	<div class="bot"/>
+</header>
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	"We are nearly through the passage, the storm bites at our heels, and the crew whispers of blood and dark magic."
 </main>
 
 <style>
 	main {
 		text-align: center;
-		padding: 1em;
 		max-width: 240px;
-		margin: 0 auto;
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		color: white;
+		width: 100%;
+	}
+
+	.top {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		
+		background-color: black
 	}
 
 	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
+		padding: 2rem;
 	}
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	.bot {
+		background-image: url('https://dreadhunger.com/images/top-header-spat.svgz');
+		width: 100%;
+		height: 53px;
+		translate: 0 -15px;
+		z-index: -1;
+
+		background-repeat: repeat-x;
 	}
 </style>
