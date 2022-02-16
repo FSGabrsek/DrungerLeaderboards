@@ -12,7 +12,7 @@
 	function setCategory(i) {
 		console.log(i);
 		index = i
-		runs = $categories[i].runs
+		runs = $categories[i].runs.sort((r1, r2) => r1.time > r2.time)
 	}
 
 	let index = -1;
