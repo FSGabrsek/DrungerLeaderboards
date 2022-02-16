@@ -1,5 +1,5 @@
 <script>
-    export let index = 1
+    export let index = '?'
     export let runner = { name: "Name", url: "." }
     export let time = new Date()
 </script>
@@ -8,8 +8,9 @@
     <img src="../bgBar.png" class="bgBar" alt="background stripe">
     <div class="wrapper">
         <div class="index">
-            {index}
+            {index}.
         </div>
+        <span></span>
         <div class="name">
             <a href="{runner.url}">{runner.name}</a>
         </div>
@@ -17,7 +18,7 @@
             -
         </div>
         <div class="time">
-            {time.toLocaleTimeString()}
+            {time.getMinutes()}:{time.getSeconds()}.<span id="mil">{time.getMilliseconds().toString().slice(0,2)}</span>
         </div>
     </div>
 </div>
