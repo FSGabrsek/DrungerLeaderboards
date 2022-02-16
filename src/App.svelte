@@ -21,7 +21,8 @@
 
 <header>
 	<div class="top">
-		<h1>Drungers</h1>
+		
+		<img src="../logo.png" alt="" srcset="">
 	</div>
 	<div class="bot"/>
 </header>
@@ -77,6 +78,7 @@
 
 		color: white;
 		width: 100%;
+		margin-bottom: 27px;
 	}
 
 	.top {
@@ -84,12 +86,15 @@
 		flex-direction: row;
 		justify-content: center;
 		
-		background-color: black
+		background-color: black;
+
+		height: 80px;
 	}
 
-	h1 {
-		padding: 2rem;
-		font-weight: normal;
+	img {
+		position: absolute;
+		height: 150px;
+
 	}
 
 	.bot {
