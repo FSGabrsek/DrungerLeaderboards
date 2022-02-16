@@ -45,11 +45,12 @@
         justify-content: center;
         align-items: center;
 
-        font-weight: bold;
+        font-weight: normal;
         font-size: 1.5rem;
+        line-height: .6em;
 
-        gap: 2rem;
-        padding: 20px 12.5%;
+        gap: 1rem;
+        padding: 30px 12.5%;
     }
 
     .container {

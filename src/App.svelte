@@ -1,34 +1,22 @@
 <script>
-	import Run from './Run.svelte'
+	import { onMount } from "svelte";
+    import { getCategories } from "./categoryService";
+	import { categories } from "./stores.js"
+	import Run from "./Run.svelte"
 
-	let time = new Date(0)
-	time.setMinutes(27)
-	time.setSeconds(34)
-	time.setMilliseconds(210)
+	onMount(async () => {
+		await getCategories()
+		setCategory(0)
+	})
 
-	let time2 = new Date(0)
-	time2.setMinutes(28)
-	time2.setSeconds(15)
-	time2.setMilliseconds(460)
+	function setCategory(i) {
+		console.log(i);
+		index = i
+		runs = $categories[i].runs
+	}
 
-	const runs = [
-		{
-			runner: {
-				name: 'Jack',
-				url: 'https://www.twitch.tv/jackmakes_'
-			},
-			time: time
-		},
-		{
-			runner: {
-				name: 'Overlite',
-				url: 'https://www.twitch.tv/jackmakes_'
-			},
-			time: time2
-		},
-		
-	].sort((r1, r2) => r1.time > r2.time)
-
+	let index = -1;
+	let runs = false
 </script>
 
 <header>
@@ -38,14 +26,28 @@
 	<div class="bot"/>
 </header>
 <main>
-	{#each runs as run, i}
-		<Run runner={run.runner} time={run.time} index={i + 1}/>
-		{#if runs[i + 1]}
-			<span class="diff">
-				+ {new Date(runs[i + 1].time - run.time).getMinutes()}:{new Date(runs[i + 1].time - run.time).getSeconds()}.<span id="mil">{new Date(runs[i + 1].time - run.time).getMilliseconds().toString().slice(0,2)}</span>
-			</span>
+	{#if runs}
+		<div class="categoryBar">
+			{#each $categories as category, i}
+				<button class:active={i == index} class="categoryButton" on:click={() => {setCategory(i)}}>
+					{category.title}
+				</button>
+			{/each}
+		</div>
+		{#if runs.length > 0}
+			{#each runs as run, i}
+				<Run runner={run.runner} time={run.time} index={i + 1}/>
+				{#if runs[i + 1]}
+					<span class="diff">
+						+ {new Date(runs[i + 1].time - run.time).getMinutes()}:{new Date(runs[i + 1].time - run.time).getSeconds()}.<span id="mil">{new Date(runs[i + 1].time - run.time).getMilliseconds().toString().slice(0,2)}</span>
+					</span>
+				{/if}
+			{/each}
+		{:else}
+			<h3>No one has submitted any runs in this category so far.</h3>
 		{/if}
-	{/each}
+		
+	{/if}
 </main>
 
 <style>
@@ -87,16 +89,57 @@
 
 	h1 {
 		padding: 2rem;
+		font-weight: normal;
 	}
 
 	.bot {
 		background-image: url('https://dreadhunger.com/images/top-header-spat.svgz');
 		width: 100%;
 		height: 53px;
-		translate: 0 -15px;
+		transform: translate(0, -15px);
 		z-index: -1;
 
 		background-repeat: repeat-x;
+	}
+
+	.categoryBar {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		overflow: scroll;
+		overflow-y: hidden;
+		overflow-x: auto;
+
+		justify-content: start;
+		gap: 3rem;
+
+		width: 110%;
+		padding-bottom: 50px;
+	}
+
+	.categoryButton {
+		background: none;
+		border: none;
+
+		text-transform: uppercase;
+		font-weight: normal;
+
+		font-family: 'Noto Serif JP', serif;
+		color: white;
+
+		background-image: url('../bgBar.png');
+		background-size: 100% 100%;
+		background-repeat:no-repeat;
+		padding: 10px 4em;
+		image-rendering: -webkit-optimize-contrast;
+	}
+
+	.active {
+		background-image: url('../bgBarRed.png');
+	}
+
+	.categoryButton::after:hover {
+		background-image: url('../bgBarRed.png');
 	}
 
 	main {
