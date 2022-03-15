@@ -18,7 +18,7 @@
             -
         </div>
         <div class="time">
-            {time.getMinutes()}:{time.getSeconds()}.<span id="mil">{time.getMilliseconds().toString().slice(0,2)}</span>
+            {time.getMinutes()}:{time.getSeconds().toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}.<span id="mil">{time.getMilliseconds().toString().slice(0,2)}</span>
         </div>
     </div>
 </div>
