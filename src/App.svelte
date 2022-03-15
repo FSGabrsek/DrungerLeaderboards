@@ -10,9 +10,18 @@
 	})
 
 	function setCategory(i) {
-		console.log(i);
 		index = i
-		runs = $categories[i].runs.sort((r1, r2) => r1.time > r2.time)
+		runs = $categories[i].runs.sort((r1, r2) => {
+			if (r1.time.getTime() > r2.time.getTime()) {
+				return 1
+			} else if (r1.time.getTime() < r2.time.getTime()) {
+				return -1
+			} else {
+				return 0
+			}
+		})
+
+		console.log(runs);
 	}
 
 	let index = -1;
